@@ -52,9 +52,8 @@ The following general functionality available to any Data Mesh role:
 
 The following diagram depicts the overall system architecture associated with a Data Mesh that is in use by a separate __Producer__ and __Consumer__ Accounts:
 
-![Architecture](architecture.png)
+![Architecture](Architecture.png)
 
-In this architecture, we can see that the data mesh is configured in AWS Account 555555555555, and contains a set of IAM Roles which allow identities within producer and consumer accounts to access the mesh. This includes:
 
 * `DataMeshManager`: IAM Role allowing administration of the Data Mesh itself
 * `DataMeshAdminProducer`: IAM Role enabling the assuming Identity to act as a __Producer__
