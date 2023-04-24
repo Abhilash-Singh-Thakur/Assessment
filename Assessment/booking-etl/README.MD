@@ -28,14 +28,14 @@ spark-submit --master yarn \
 
 
 
---master yarn: Specifies the Spark master URL to be yarn.\
---deploy-mode client: Specifies the deploy mode. client mode means the driver program runs on the client side.\
---num-executors: The number of executors to be allocated.\
---executor-memory: The amount of memory to be allocated per executor.\
---executor-cores: The number of CPU cores to be allocated per executor.\
---driver-memory: The amount of memory to be allocated for the driver program.\
---class: The fully-qualified name of the main class of your Spark application.\
---<application_jar_file>: The path to the jar file containing your Spark application code.\
---<input_file_path>: The path to the input file.\
---<output_file_path>: The path to the output file.
+* __master yarn__ : Specifies the Spark master URL to be yarn.\
+* __deploy-mode client__: Specifies the deploy mode. client mode means the driver program runs on the client side.\
+* __num-executors__: The number of executors to be allocated.\
+* __executor-memory__: The amount of memory to be allocated per executor.\
+* __executor-cores__: The number of CPU cores to be allocated per executor.\
+* __driver-memory__: The amount of memory to be allocated for the driver program.\
+* __class__: The fully-qualified name of the main class of your Spark application.\
+* __<application_jar_file>__: The path to the jar file containing your Spark application code.\
+* __<input_file_path>__: The path to the input file.\
+* __<output_file_path>__: The path to the output file.
 
