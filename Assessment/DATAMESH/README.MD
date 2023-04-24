@@ -34,7 +34,7 @@ The AWS Data Mesh Helper library provides automation around the most common task
 To get started, you must first enable an AWS Account as the __Data Mesh__ Account. This is where you will store all Lake Formation metadata about the __Data Products__ which are offered to __Consumers__. Within this Account, there exist IAM Roles for __Producer__ and __Consumer__
 which allow any AWS Identity who has access to perform tasks within the Data Mesh.
 
-Once you have setup an Account as the __Data Mesh__, you can then activate another AWS Account as a __Producer__, __Consumer__, or both. All of these tasks are performed by the __Data Mesh Admin__, which is accessible through an additional IAM Role or as any Administrator Identity within the mesh Account. Once completed, end users can perform the following Data Mesh tasks:
+Once you have setup an Account as the __Data Mesh (Central Governance)__, you can then activate another AWS Account as a __Producer__, __Consumer__, or both. All of these tasks are performed by the __Data Mesh Admin__, which is accessible through an additional IAM Role or as any Administrator Identity within the mesh Account. Once completed, end users can perform the following Data Mesh tasks:
 
 ### Data Mesh Tasks
 
@@ -62,10 +62,10 @@ The following diagram depicts the overall system architecture associated with a 
 
 For testing and simplicity, every IAM Role in the solution is accompanied by a single IAM User who is a member of a Group specific to the function. This will enable you to add users to this Group should you wish to, rather than using a programmatic approach. IAM Roles are backed by an IAM Policy of the same name as the Role, and all objects in the IAM stack for AWS Data Mesh reside at path _/AwsDataMesh/_.
 
-You can then see that there is a Producer Account 111111111111 who has been enabled to act as a __Producer__. Within this account we see a similar approach to IAM principals, with the creation of a `DataMeshProducer` IAM Role which is accompanied by an associated user and group. When configured, the `DataMeshProducer` group is granted rights to assume
+You can then see that there is a Producer Account who has been enabled to act as a __Producer__. Within this account we see a similar approach to IAM principals, with the creation of a `DataMeshProducer` IAM Role which is accompanied by an associated user and group. When configured, the `DataMeshProducer` group is granted rights to assume
 the `DataMeshProducer-<account id>` role in the data mesh Account.
 
-Similarly, we have a consumer Account 999999999999. This Account also includes IAM objects to enable data mesh access, including the `DataMeshConsumer` IAM Role, and associated IAM users and groups. Only the `DataMeshConsumer` role may assume the `DataMeshAdminConsumer-<account id>` role in the data mesh Account.
+Similarly, we have a consumer Account . This Account also includes IAM objects to enable data mesh access, including the `DataMeshConsumer` IAM Role, and associated IAM users and groups. Only the `DataMeshConsumer` role may assume the `DataMeshAdminConsumer-<account id>` role in the data mesh Account.
 
 All information around current or pending subscriptions is stored in DynamoDB, in table `AwsDataMeshSubscriptions`. This table is secured for only those operations which Producers or Consumer roles are allowed to execute, and stores the overall lifecycle for Subscriptions.
 
