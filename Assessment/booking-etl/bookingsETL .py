@@ -149,6 +149,30 @@ if __name__ == "__main__":
     main()
 
 
+# this is the another optimized approach
+
+from pyspark.sql.functions import col, concat, expr, to_date
+
+def add_arrival_and_departure_dates_columns(bookings_df):
+    bookings_df = bookings_df.withColumn("arrival_date", to_date(expr("concat(arrival_date_year, '-', arrival_date_month, '-', arrival_date_day_of_month)"), "yyyy-MMMM-d"))
+    bookings_df = bookings_df.withColumn("total_nights", col("stays_in_weekend_nights") + col("stays_in_week_nights"))
+    bookings_df = bookings_df.withColumn("departure_date", expr("date_add(arrival_date, total_nights)"))
+
+    return bookings_df
+
+
+# most optimized functions
+from pyspark.sql.functions import col, concat, expr, to_date, date_format
+
+def add_arrival_and_departure_dates_columns(bookings_df):
+    bookings_df = bookings_df.withColumn("arrival_date", to_date(expr("concat(arrival_date_year, '-', arrival_date_month, '-', arrival_date_day_of_month)"), "yyyy-MMMM-d"))
+    bookings_df = bookings_df.withColumn("total_nights", col("stays_in_weekend_nights") + col("stays_in_week_nights"))
+    bookings_df = bookings_df.withColumn("departure_date", expr("date_add(arrival_date, total_nights)"))
+    
+    bookings_df = bookings_df.withColumn("arrival_date", date_format(col("arrival_date"), "yyyy-MM-dd")) # convert the date into string data type.
+    bookings_df = bookings_df.withColumn("departure_date", date_format(col("departure_date"), "yyyy-MM-dd"))
+
+    return bookings_df
 
 
 
